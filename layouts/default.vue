@@ -7,6 +7,18 @@
 <script>
   import NavBar from "~/components/NavBar.vue";
   export default {
+    head() {     // vue-meta property
+      return {
+        titleTemplate: '$s - Real World Events',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Where you can create the events in your neighborhood.'
+          }
+        ]
+      }
+    },
     components: {
       NavBar
     }
