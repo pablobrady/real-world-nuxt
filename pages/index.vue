@@ -18,18 +18,18 @@ export default {
       title: 'Event Listing'  // default description will be inherited
     }
   },
-  asyncData({ $axios, error }) {   // accepts "context" var, or this es6 shortcut $axios
-    return $axios.get('http://localhost:3000/events').then( response => {
+  async asyncData({ $axios, error = null }) {
+    try {
+      const { data } = await $axios.get('http://localhost:3000/events')
       return {
-        events: response.data       // Returns the component data directly. (No manual data merging.)
+        events: data
       }
-    })
-    .catch(e => {
-      if( e ) { null }
+    } catch (e) {
       error({
-        statusCode: 503, message: 'Unable to fetch events at this time.  Please try again. '
+        statusCode: 503,
+        message: 'Unable to fetch events at this time.  Sorry dude, dudess, or non-binary dude-person.'
       })
-    })
+    }
   },
   components: {
     EventCard
