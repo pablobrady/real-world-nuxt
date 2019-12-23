@@ -12,15 +12,17 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue';
+import EventService from '@/services/EventService.js'
+
 export default {
   head() {     // vue-meta property
     return {
       title: 'Event Listing'  // default description will be inherited
     }
   },
-  async asyncData({ $axios, error = null }) {
+  async asyncData({ error = null }) {
     try {
-      const { data } = await $axios.get('http://localhost:3000/events')
+      const { data } = await EventService.getEvents()
       return {
         events: data
       }
