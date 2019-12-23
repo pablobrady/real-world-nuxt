@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js'
-
+import { mapState } from 'vuex'
 export default {
   head() {
     return {
@@ -20,18 +19,18 @@ export default {
       ]
     }
   },
-  async asyncData({ params, error = null }) {
+  async fetch({ store, error, params }) {
     try {
-      const { data } = await EventService.getEvent( params.id )
-      return {
-        event: data
-      }
+      await store.dispatch('events/fetchEvent', params.id )
     } catch (e) {
       error({
         statusCode: 503,
         message: 'Unable to fetch event #' + params.id + '.  Sorry dude, dudess, or non-binary dude-person.'
       })
     }
-  }
+  },
+  computed: mapState({
+    event: state => state.events.event
+  })
 }
 </script>
