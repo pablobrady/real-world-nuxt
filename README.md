@@ -1,6 +1,12 @@
-# real-world-nuxt
+npm # real-world-nuxt
 
-> My excellent Nuxt.js project
+
+## Launch
+json-server --watch db.json --delay 2000
+
+PORT=3001 npm run dev
+
+---
 
 ## Build Setup
 
