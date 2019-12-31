@@ -2,7 +2,7 @@ npm # real-world-nuxt
 
 
 ## Launch
-json-server --watch db.json --delay 2000
+json-server --watch db.json --delay 2000   (during local development only)
 
 PORT=3001 npm run dev
 
